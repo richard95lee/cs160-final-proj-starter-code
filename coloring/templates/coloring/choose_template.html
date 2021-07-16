@@ -13,33 +13,12 @@
 		#background {
 			background-image: url("/static/coloring/assets/wood-background.jpg");
 			background-size: cover;
+			background-attachment: scroll;
 		}
 
-		.grid {
-			display: grid;
-			gap: 1em;
-			grid-template-columns: repeat(3, 1fr);
-			grid-template-rows: masonry;
-		}
-
-		.img1 {
-			height: 180px;
-			width: 230;
-		}
-
-		.template1 {
-			height: 180px;
-			width: 250px;
-		}
-
-		.template2 {
-			height: 380px;
-			width: 450px;
-		}
-
-		.template4 {
-			height: 280px;
-			width: 310px;
+		.grid-item { 
+			width: 400px; 
+			margin-top: 20px;
 		}
 		
 	</style>
@@ -54,50 +33,81 @@
 						.css("color", rainbowColors[i % rainbowColors.length]);
 				$('#a-navbar-title').append(s);
 			}
+
+			$('.grid').masonry({
+				// options
+				itemSelector: '.grid-item',
+				columnWidth: 200,
+				gutter: 10
+			});
+
+			$('.img').click(function() {
+				filename = $(this).attr('src').split('/').pop();
+				console.log(filename);
+				window.location.href = `color/${filename}/`;
+			})
 		})
 	</script>
 </head>
 
 <body>
-	<div id="background" class="h-screen w-full bg-fixed">
+	<div id="background" class="h-screen w-full overflow-auto">
 		<div class="h-10 w-full flex justify-between items-center bg-white shadow-xl">
 			<div id="a-navbar-title" class="w-64 pl-4 font-bold text-2xl"></div>
 			<div class="justify-self-center font-medium text-lg"><span>Choose a template</span></div>
 			<div class="w-64"></div>
 		</div>
 
-		<div class='grid'>
-			<div href='new_interaction' class='template1'>
-				<h1>MANDALA</h1>
-				<img class='img1' src ='/static/coloring/images/mandala-freepik.svg'>
-				<h1>MANDALA</h1>
-			</div>
-
-			<div href='new_interaction' class='template2'>
-				<!-- <h1>TEMPLATE 2</h1> -->
+		<div class='grid mx-40'>
+			<div class='grid-item bg-white shadow  template3'>
 				<img class='img' src ='/static/coloring/images/mandala-freepik.svg'>
-				<h1>TEMPLATE 2</h1>
 			</div>
 
-			<div href='new_interaction' class='template3'>
-				<h1>TEMPLATE 3</h1>
-				<img class='img' src ='/static/coloring/images/mandala-freepik.svg'>
-				<h1>TEMPLATE 3</h1>
+			<div class='grid-item bg-white shadow  template3'>
+				<img class='img' src ='/static/coloring/images/triangles.svg'>
 			</div>
 
-			<div href='new_interaction' class='template4'>
-				<h1>TEMPLATE 3</h1>
-				<img class='img' src ='/static/coloring/images/mandala-freepik.svg'>
-				<h1>TEMPLATE 3</h1>
+			<div class='grid-item bg-white shadow template1'>
+				<img class='img' src ='/static/coloring/images/1.svg'>
 			</div>
 
-			<div href='new_interaction' class='template5'>
-				<h1>TEMPLATE 3</h1>
-				<img src ='/static/coloring/images/mandala-freepik.svg'>
-				<h1>TEMPLATE 3</h1>
-				<h1>TEMPLATE 3</h1>
-				<h1>TEMPLATE 3</h1>
+			<div class='grid-item bg-white shadow  template2'>
+				<img class='img' src ='/static/coloring/images/5.svg'>
 			</div>
+
+			<div class='grid-item bg-white shadow  template4'>
+				<img class='img' src ='/static/coloring/images/7.svg'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/10.svg'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/2.jpeg'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/3.jpeg'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/4.jpeg'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/6.jpeg'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/8.gif'>
+			</div>
+
+			<div class='grid-item bg-white shadow  template5'>
+				<img src ='/static/coloring/images/9.gif'>
+			</div>
+
+
 		</div>
 	</div>
 </body>

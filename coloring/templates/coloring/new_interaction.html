@@ -58,7 +58,7 @@
 			var mandala = {
 				item: null,
 				lastClicked: null,
-				filePath: '/static/coloring/images/mandala-freepik.svg'
+				filePath: '/static/coloring/images/{{ filename }}'
 			};
 
 			// color palette
@@ -190,12 +190,22 @@
 			}
 
 			function init(custom){
+				$('#back-to-template').click(function() {
+					window.location.href = `/coloring/choose_template`;
+				})
 				paper.setup(canvas);
 				getColorsCreatePalette();
 				setUpTools();
 
 				paper.project.importSVG(mandala.filePath, function(item) {
-					mandala.item = item._children["design-freepik"];
+					if (item._children["design-freepik"]) {
+						mandala.item = item._children["design-freepik"];
+					} else {
+						console.log(item.children)
+						mandala.item = item.children[0]
+					}
+					// console.log(item.children)
+					// mandala.item = item.children[0]
 					layer0 = new paper.Layer({
 						children: [],
 						strokeColor: 'black',
@@ -242,7 +252,11 @@
 		<div class="h-10 w-full flex justify-between items-center bg-white shadow-xl">
 			<div id="a-navbar-title" class="w-64 pl-4 font-bold text-2xl"></div>
 			<div class="justify-self-center font-medium text-lg"><span>Coloring</span></div>
-			<div class="w-64"></div>
+			<div class="w-64">
+				<div id="back-to-template" class="h-8 w-32 border border-gray-400 rounded shadow">
+					<a>Back to templates</a>
+				</div>
+			</div>
 		</div>
 		<div class="max-w-min mx-auto mt-10 rounded-md bg-white shadow-lg">
 			<canvas id="myCanvas" width="750px" height="750px"></canvas>

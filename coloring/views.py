@@ -11,3 +11,6 @@ def choose_template(request):
 
 def new_interaction(request):
     return render(request, 'coloring/new_interaction.html')
+
+def color(request, filename="mandala-freepik.svg"):
+    return render(request, 'coloring/new_interaction.html', {'filename': filename});
