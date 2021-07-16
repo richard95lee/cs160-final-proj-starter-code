@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task 2</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static '/vendors/bootstrap/css/bootstrap.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" />
+
+	<script src="{% static '/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static '/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+
+	<style>
+		#header {
+			width: 1024px;
+			height: 80px;
+			display: inline-block;
+			background-image: linear-gradient(to bottom right, red, yellow);
+		}
+
+		#templates {
+			width: 1024px;
+			height: 688px;
+			/* background-image: url('img_girl.jpg'); */
+			background-color: aqua;
+		}
+
+		.nameDiv {
+			display: inline;
+			float: left;
+		}
+
+		.name {
+			padding-left: 10px;
+			/* background-image: linear-gradient(to bottom right, red, yellow); */
+			/* color: linear-gradient(top bottom right, red, yellow); */
+			color: blue;
+		}
+
+		.title {
+			display: inline;
+			/* float: center; */
+			float: left;
+			/* margin-left: 100px; */
+			padding-left: 140px;
+		}
+
+		.template1 {
+			float: left;
+			padding-left: 70px;
+			padding-right: 70px;
+			padding-top: 50px;
+		}
+
+		.template2 {
+			float: left;
+			padding-left: 70px;
+			padding-right: 70px;
+			padding-top: 50px;
+		}
+
+		.template3 {
+			float: left;
+			padding-left: 70px;
+			padding-right: 70px;
+			padding-top: 50px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<!-- <div class="container"> -->
+		<header id='header'>
+			<div class='nameDiv'>
+				<h1 class='name'>Color Your Dreams</h1>
+			</div>
+			<div class='title'>
+				<h2>Choose a Template</h2>
+			</div>
+		</header>
+
+		<div id='templates'>
+			<a href='color1' class='template1'>
+				<h1>MANDALA</h1>
+				<img src ='/static/coloring/images/mandala-freepik.svg'>
+				<h1>MANDALA</h1>
+			</a>
+
+			<a href='color2' class='template2'>
+				<h1>TEMPLATE 2</h1>
+				<h1>TEMPLATE 2</h1>
+				<img src ='/static/coloring/images/mandala-freepik.svg'>
+				<h1>TEMPLATE 2</h1>
+			</a>
+
+			<a href='color3' class='template3'>
+				<h1>TEMPLATE 3</h1>
+				<h1>TEMPLATE 3</h1>
+				<img src ='/static/coloring/images/mandala-freepik.svg'>
+				<h1>TEMPLATE 3</h1>
+			</a>
+		</div>
+	<!-- </div> -->
+</body>
+</html>
