@@ -13,7 +13,212 @@
 	{% comment %} <link href="{% static 'coloring/vendors/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> {% endcomment %}
 
 	<!-- <style type="text/css" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script> -->
-	<style type="text/css">
+	<style type="text/css"> 
+
+p.cityLocalTime {
+    color: royalblue;
+    font-family: "Work Sans";
+    font-size: x-large;
+}
+h1 {
+    color: black;
+    font-family: "Work Sans";
+    margin-top: 3px;
+    /* color:royalblue */
+    color: blue;
+}
+
+/* body {
+    background-color: powderblue;
+} */
+
+#outer-wrapper {
+    width: 414px;
+    color: black;
+    background-color: #c9ffe5;
+    margin-left: 80px;
+    margin-right: auto;
+    border-top: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+
+    height: auto;
+}
+
+
+#city {
+    width: 414px;
+    height: 150px;
+    border-bottom: 2px solid #aaa;
+    margin-top: 8px;
+
+    background-image: url("{% static 'weather/css/warning.png' %}")
+}
+
+
+	#buttons {
+    	padding-left: 5px;
+    	padding-right: 5px;
+	}
+
+#cityInfo {
+    margin-left: 42px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#overview {
+    width: 414px;
+    height: 200px;
+    border-bottom: 2px solid #aaa;
+    background-color: #fddde6;
+}
+
+#overviewAlert {
+    width: 414px;
+    height: 200px;
+    border-bottom: 2px solid #aaa;
+    /* background-color: red; */
+    background-color: #fddde6;
+}
+
+#detail1 {
+    width: 414px;
+    height: 360px;
+    background-color: #d8ecf3;
+    border-bottom: 2px dotted #aaa;
+}
+
+#detail2 {
+    width: 414px;
+    height: 130px;
+    border-top: 2px dotted #aaa;
+    border-bottom: 2px solid #aaa;
+    background-color: #fddde6;
+}
+
+
+.buttonAdd {
+    border-radius: 30%;
+    float: right;
+    background-color: skyblue;
+}
+
+.buttonBack {
+    border-radius: 30%;
+    float: left;
+    background-color: skyblue;
+}
+
+.cityWarning {
+    float: right;
+    padding-right: 20px;
+    padding-top: 30px;
+}
+
+.cityLocalTime {
+    margin-left: 10px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.overviewImg {
+    /* width: 30px;
+    height: auto; */
+    margin-top: 20px;
+    margin-left: 15px;
+    padding-left: 10px;
+    padding-top: 8px;
+}
+
+.feature-overview-temp {
+    float: right;
+    margin-right: 15px;
+}
+
+.overview-temp {
+    /* font-weight: 1200; */
+    font-family: "Work Sans Black 900 italic";
+    font-size: 60px;
+    color:blue;
+    margin-top: 20px;
+    padding-left: 50px;
+    padding-right: 20px;
+    /* font-size: xx-large; */
+}
+
+.forecastHigh {
+    float: left;
+    /* color: blue; */
+    color:royalblue;
+    margin-top: 0;
+    padding-left: 30px;
+}
+.forecastLow {
+    float: left;
+    padding-left: 15px;
+    /* color: blue; */
+    color:royalblue;
+    margin-top: 0;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.detail1-time {
+    float: left;
+    padding-left: 20px;
+}
+
+.detail1Time {
+    color: green;
+    margin-left: 8px;
+    /* margin-top: 10px; */
+}
+
+.detail1-img {
+    float: left;
+    /* margin-top: 20px; */
+    padding-left: 40px;
+    /* padding-left: 120px; */
+}
+
+.detail1-temp {
+    float: left;
+    padding-left: 85px;
+}
+
+.detail1WeatherImg {
+    padding-bottom: 10px;
+}
+
+
+.detail1Temp {
+    color: green;
+    margin-right: 10px;
+}
+
+.detail2Info {
+    /* margin-top: 8px; */
+    margin-left: 15px;
+    font-family: "Work Sans";
+}
+
+
+.detail2Notice {
+    padding-left: 20px;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+    color: green
+}
+
+
+	.button {
+    	float: right;
+    	background-color: #fddde6;
+    	color: royalblue
+	}
+
+
+
 		#color-palette {
 			width: 300px;
 			background-color: #f1f1f1;
@@ -38,11 +243,6 @@
 		    margin-left: auto;
 		    margin-right: auto;
 		    display: block;
-		}
-
-		#background {
-			background-image: url("/static/coloring/assets/wood-background.jpg");
-			background-size: cover;
 		}
 	</style>
 
@@ -159,51 +359,51 @@
 					$('#colors').toggle(mode != 'tool-eraser');
 				})
 
-				$('#tool-brush').click(function () {
-					cp.history.push('#000000');
-					$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-						.addClass('border border-gray-600');
-					$('#color-swatch-19').removeClass('border border-gray-600')
-						.addClass('color-swatch-active ring-4 ring-blue-600');
-					$('.brush-size-active').removeClass('brush-size-active ring-4 ring-blue-600');
-					$('.brush-size').eq(0).addClass('brush-size-active ring-4 ring-blue-600');
-				})
+				// $('#tool-brush').click(function () {
+				// 	cp.history.push('#000000');
+				// 	$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
+				// 		.addClass('border border-gray-600');
+				// 	$('#color-swatch-19').removeClass('border border-gray-600')
+				// 		.addClass('color-swatch-active ring-4 ring-blue-600');
+				// 	$('.brush-size-active').removeClass('brush-size-active ring-4 ring-blue-600');
+				// 	$('.brush-size').eq(0).addClass('brush-size-active ring-4 ring-blue-600');
+				// })
 
-				$('#tool-eraser').click(function () {
-					$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-						.addClass('border border-gray-600');
-				})
+				// $('#tool-eraser').click(function () {
+				// 	$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
+				// 		.addClass('border border-gray-600');
+				// })
 
-				$('#tool-fill').click(function() {
-					cp.history.push('#000000');
-					$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-												.addClass('border border-gray-600');
-					$('#color-swatch-19').removeClass('border border-gray-600')
-								.addClass('color-swatch-active ring-4 ring-blue-600');
-				})
+				// $('#tool-fill').click(function() {
+				// 	cp.history.push('#000000');
+				// 	$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
+				// 								.addClass('border border-gray-600');
+				// 	$('#color-swatch-19').removeClass('border border-gray-600')
+				// 				.addClass('color-swatch-active ring-4 ring-blue-600');
+				// })
 
-				$('#tool-delete').click(function() {
-					// delete the fills
-					children = [...layer0.children]
-					children.map(function (c) {
-						c.remove();
-					})
-					mandala.item.fillColor = new paper.Color(1, 1, 1, 0.01);
+				// $('#tool-delete').click(function() {
+				// 	// delete the fills
+				// 	children = [...layer0.children]
+				// 	children.map(function (c) {
+				// 		c.remove();
+				// 	})
+				// 	mandala.item.fillColor = new paper.Color(1, 1, 1, 0.01);
 					
-					window.setTimeout(function() {
-						$('#tool-fill').click();
-					}, 500);
-				})
+				// 	window.setTimeout(function() {
+				// 		$('#tool-fill').click();
+				// 	}, 500);
+				// })
 
-				$(".brush-size").click(function () {
-					$('.brush-size-active').removeClass('brush-size-active ring-4 ring-blue-600');
-					$(this).addClass('brush-size-active ring-4 ring-blue-600');
-					brushSize = parseInt($(this).attr("data-size"));
-				})
+				// $(".brush-size").click(function () {
+				// 	$('.brush-size-active').removeClass('brush-size-active ring-4 ring-blue-600');
+				// 	$(this).addClass('brush-size-active ring-4 ring-blue-600');
+				// 	brushSize = parseInt($(this).attr("data-size"));
+				// })
 			}
 
 			function init(custom){
-				$('#back-to-template').click(function() {
+				$('#next-button').click(function() {
 					window.location.href = `/coloring/choose_template`;
 				})
 				paper.setup(canvas);
@@ -262,43 +462,98 @@
 </head>
 <body>
 	<div id="background" class="w-full h-full min-w-screen min-h-screen overflow-auto">
-		<div class="h-10 w-full flex justify-between items-center bg-white shadow-xl">
-			<div id="a-navbar-title" class="w-64 pl-4 font-bold text-2xl"></div>
-			<div class="justify-self-center font-medium text-lg"><span>Coloring</span></div>
-			<div class="w-64">
-				<div id="back-to-template" class="h-8 w-36 px-2 border border-gray-300 rounded shadow">
-					<span>Back to templates</span>
+		<div class="h-30 w-full flex justify-between items-center bg-white shadow-xl">
+			<div class="w-10">
+				<div id="next-button" class="h-8 w-36 px-2 border border-gray-300 rounded shadow">
+					<span>back</span>
+				</div>
+			</div>
+			<div class="justify-self-center font-medium text-lg border border-gray-300"><span>step1: Set Up Your Room</span></div>
+			<div class="justify-self-center font-medium text-lg border border-gray-300"><span>step2: Set Up Your Objects</span></div>
+			<div class="justify-self-center font-medium text-lg border border-gray-300"><span>step3: View Your Design</span></div>
+			<div class="w-10">
+				<div id="next-button" class="h-8 w-36 px-2 border border-gray-300 rounded shadow">
+					<span>-></span>
 				</div>
 			</div>
 		</div>
-		<div class="max-w-min mx-auto mt-10 rounded-md bg-white shadow-lg">
+		<!-- <div class="max-w-min mx-auto mt-10 rounded-md bg-white shadow-lg">
 			<canvas id="myCanvas" width="750px" height="750px"></canvas>
-		</div>
-		<div id="color-palette-new" class="w-24 absolute top-1/4 p-1.5 bg-white rounded-md shadow-lg">
-			<div id="tools">
-				<span class="text-gray-500 text-xs">Tools</span>
-				<div class="flex flex-row flex-wrap justify-left">
-					<div id="tool-brush"  class="tool w-9 p-1 m-0.5 rounded border-2 border-gray-400 shadow"><img src="/static/coloring/icons/paint-brush.png" alt="paint-brush"></div>
-					<div id="tool-fill"   class="tool w-9 p-1 m-0.5 rounded border-2 border-gray-400 shadow"><img src="/static/coloring/icons/fill.png" alt="fill"></div>
-					<div id="tool-eraser" class="tool w-9 p-1 m-0.5 rounded border-2 border-gray-400 shadow"><img src="/static/coloring/icons/eraser.png" alt="eraser"></div>
-					<div id="tool-delete" class="tool w-9 p-1 m-0.5 rounded border-2 border-gray-400 shadow"><img src="/static/coloring/icons/delete.png" alt="delete"></div>
-				</div>	
-			</div>
-			<!-- the tool size div shouldn't display if pencil or fill tool is activated -->
-			<div id="tool-size">
-				<span class="text-gray-500 text-xs">Tool size</span>
-				<div class="pl-1 flex flex-row justify-between items-center">
-					<div data-size="16" class="brush-size w-4 h-4 rounded-3xl bg-gray-500"></div>
-					<div data-size="24" class="brush-size w-6 h-6 rounded-3xl bg-gray-500"></div>
-					<div data-size="32" class="brush-size w-8 h-8 rounded-3xl bg-gray-500"></div>
+		</div> -->
+
+		<div id="outer-wrapper">
+
+			<div id="city">
+				<div id="buttons">
+					<button class="buttonBack"><</button>
+					<button class="buttonAdd">+</button>
+				</div>
+				<div id="cityInfo">
+					<br><br>
+					<p class="cityLocalTime">13:34</p>
+					<h1> Santa Ana, CA </h1>
 				</div>
 			</div>
-			<div id="colors">
-				<span class="text-gray-500 text-xs">Colors</span>
-				<div id="colors-container" class="grid grid-cols-3 gap-1"></div>
+	
+			<div id="overview">
+				<img class="overviewImg" src="{% static 'weather/css/sun.png' %}" style="width: 160px;">
+				<div class="feature-overview-temp">
+					<br>
+					<h1 class="overview-temp">26 <span>&#176;</span>C</h1>
+					<p class="forecastHigh">High: 30 <span>&#176;</span>C</p>
+					<p class="forecastLow">Low: 24 <span>&#176;</span>C</p>
+				</div>
 			</div>
+	
+			<div id="detail1">
+				<div class="detail1-time">
+					<br>
+					<p class="detail1Time">14:00</p>
+					<br><br>
+					<p class="detail1Time">15:00</p>
+					<br><br>
+					<p class="detail1Time">16:00</p>
+					<br><br>
+					<p class="detail1Time">17:00</p>
+				</div>
+				<div class="detail1-img">
+					<br>
+					<img class="detail1WeatherImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					<br>
+					<img class="detail1WeatherImg" src="{% static 'weather/css/sun:cloud.png' %}" style="width: 80px;">
+					<br>
+					<img class="detail1WeatherImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					<br>
+					<img class="detail1WeatherImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+				</div>
+				<div class="detail1-temp">
+					<br>
+					<p class="detail1Temp">27 <span>&#176;</span>C!!</p>
+					<br><br>
+					<p class="detail1Temp">26 <span>&#176;</span>C!!</p>
+					<br><br>
+					<p class="detail1Temp">25 <span>&#176;</span>C!!</p>
+					<br><br>
+					<p class="detail1Temp">24 <span>&#176;</span>C!!</p>
+				</div>
+			</div>
+	
+			<div id="detail2">
+				<div class="detail2Info">
+					<ul>
+						<li>Air Quality: good</li>
+						<li>Wind: breeze</li>
+						<li>humdity: 60%</li>
+					</ul>
+					<p class="detail2Notice"> <span style="font-size:100%;color:orangered;">&starf;</span> May rain in the evening</p>
+				</div>
+			</div>
+	
 		</div>
+	
+
 	</div>
 
+	
 </body>
 </html>
