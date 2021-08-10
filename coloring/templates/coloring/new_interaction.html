@@ -33,7 +33,7 @@ h1 {
 } */
 
 #outer-wrapper {
-    width: 414px;
+    /* width: 414px; */
     color: black;
     background-color: #c9ffe5;
     margin-left: 80px;
@@ -43,6 +43,29 @@ h1 {
 
     height: auto;
 }
+
+.border {
+	margin-top: 20px;
+    background-color: #fddde6;
+	width: 400px;
+}
+
+.outerCard {
+    margin-top: 50px;
+    background-color: #fddde6;
+    height: 150px;
+    width: 165px;
+
+    float: left;
+
+    border: 2px solid black;
+    /* border-radius:15px; */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left:18px;
+    margin-right: 18px;
+}
+
 
 
 #city {
@@ -54,12 +77,6 @@ h1 {
     background-image: url("{% static 'weather/css/warning.png' %}")
 }
 
-
-	#buttons {
-    	padding-left: 5px;
-    	padding-right: 5px;
-	}
-
 #cityInfo {
     margin-left: 42px;
     margin-top: 0;
@@ -68,7 +85,7 @@ h1 {
 
 #overview {
     width: 414px;
-    height: 200px;
+    height: 100px;
     border-bottom: 2px solid #aaa;
     background-color: #fddde6;
 }
@@ -236,14 +253,14 @@ h1 {
 			border-radius: 12px;
 			margin: 3px;
 		}
-
+/* 
 		#myCanvas {
 			padding-left: 0;
 		    padding-right: 0;
 		    margin-left: auto;
 		    margin-right: auto;
 		    display: block;
-		}
+		} */
 	</style>
 
 	<script type="text/javascript" canvas="canvas">
@@ -330,77 +347,34 @@ h1 {
 				}
 			}
 
-			// loads a set of colors from a json to create a color palette
-			function getColorsCreatePalette(){
-				cp.$container.html(" ");
-				$.getJSON('/static/coloring/vendors/material/material-colors.json', function(colors){
-					var keys = Object.keys(colors);
-					for (var i = keys.length - 1; i >= 0; i--) {
-						cp.options.push(colors[keys[i]][500]);
-					}
-					cp.options.push('#000000')
-					cp.options.push('#ffffff')
-					console.log('cp.options is', cp.options)
-					createColorPalette(cp.options);
-				});
-			}
+			// function getColorsCreatePalette(){
+			// 	cp.$container.html(" ");
+			// 	$.getJSON('/static/coloring/vendors/material/material-colors.json', function(colors){
+			// 		var keys = Object.keys(colors);
+			// 		for (var i = keys.length - 1; i >= 0; i--) {
+			// 			cp.options.push(colors[keys[i]][500]);
+			// 		}
+			// 		cp.options.push('#000000')
+			// 		cp.options.push('#ffffff')
+			// 		console.log('cp.options is', cp.options)
+			// 		createColorPalette(cp.options);
+			// 	});
+			// }
 
-			function setUpTools() {
-				$('#tool-fill').removeClass('border-2 border-gray-400')
-							.addClass('tool-active ring-4 ring-blue-600');
-				$('#tool-size').toggle();
-				$('.tool').click(function() {
-					$('.tool-active').removeClass('tool-active ring-4 ring-blue-600')
-									.addClass('border-2 border-gray-400');
-					$(this).removeClass('border-2 border-gray-400')
-							.addClass('tool-active ring-4 ring-blue-600');
-					mode = $(this).attr('id');
-					$('#tool-size').toggle(mode == 'tool-brush');
-					$('#colors').toggle(mode != 'tool-eraser');
-				})
-
-				// $('#tool-brush').click(function () {
-				// 	cp.history.push('#000000');
-				// 	$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-				// 		.addClass('border border-gray-600');
-				// 	$('#color-swatch-19').removeClass('border border-gray-600')
-				// 		.addClass('color-swatch-active ring-4 ring-blue-600');
-				// 	$('.brush-size-active').removeClass('brush-size-active ring-4 ring-blue-600');
-				// 	$('.brush-size').eq(0).addClass('brush-size-active ring-4 ring-blue-600');
-				// })
-
-				// $('#tool-eraser').click(function () {
-				// 	$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-				// 		.addClass('border border-gray-600');
-				// })
-
-				// $('#tool-fill').click(function() {
-				// 	cp.history.push('#000000');
-				// 	$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-				// 								.addClass('border border-gray-600');
-				// 	$('#color-swatch-19').removeClass('border border-gray-600')
-				// 				.addClass('color-swatch-active ring-4 ring-blue-600');
-				// })
-
-				// $('#tool-delete').click(function() {
-				// 	// delete the fills
-				// 	children = [...layer0.children]
-				// 	children.map(function (c) {
-				// 		c.remove();
-				// 	})
-				// 	mandala.item.fillColor = new paper.Color(1, 1, 1, 0.01);
-					
-				// 	window.setTimeout(function() {
-				// 		$('#tool-fill').click();
-				// 	}, 500);
-				// })
-
-				// $(".brush-size").click(function () {
-				// 	$('.brush-size-active').removeClass('brush-size-active ring-4 ring-blue-600');
-				// 	$(this).addClass('brush-size-active ring-4 ring-blue-600');
-				// 	brushSize = parseInt($(this).attr("data-size"));
-				// })
-			}
+			// function setUpTools() {
+			// 	$('#tool-fill').removeClass('border-2 border-gray-400')
+			// 				.addClass('tool-active ring-4 ring-blue-600');
+			// 	$('#tool-size').toggle();
+			// 	$('.tool').click(function() {
+			// 		$('.tool-active').removeClass('tool-active ring-4 ring-blue-600')
+			// 						.addClass('border-2 border-gray-400');
+			// 		$(this).removeClass('border-2 border-gray-400')
+			// 				.addClass('tool-active ring-4 ring-blue-600');
+			// 		mode = $(this).attr('id');
+			// 		$('#tool-size').toggle(mode == 'tool-brush');
+			// 		$('#colors').toggle(mode != 'tool-eraser');
+			// 	})
+			// }
 
 			function init(custom){
 				$('#next-button').click(function() {
@@ -477,21 +451,14 @@ h1 {
 				</div>
 			</div>
 		</div>
-		<!-- <div class="max-w-min mx-auto mt-10 rounded-md bg-white shadow-lg">
-			<canvas id="myCanvas" width="750px" height="750px"></canvas>
-		</div> -->
 
 		<div id="outer-wrapper">
 
 			<div id="city">
-				<div id="buttons">
-					<button class="buttonBack"><</button>
-					<button class="buttonAdd">+</button>
-				</div>
 				<div id="cityInfo">
 					<br><br>
-					<p class="cityLocalTime">13:34</p>
-					<h1> Santa Ana, CA </h1>
+					<span class="justify-self-center text-5xl"> Room </span>
+					<span class="justify-self-center text-5xl"> Planner </span>
 				</div>
 			</div>
 	
@@ -499,53 +466,67 @@ h1 {
 				<img class="overviewImg" src="{% static 'weather/css/sun.png' %}" style="width: 160px;">
 				<div class="feature-overview-temp">
 					<br>
-					<h1 class="overview-temp">26 <span>&#176;</span>C</h1>
-					<p class="forecastHigh">High: 30 <span>&#176;</span>C</p>
-					<p class="forecastLow">Low: 24 <span>&#176;</span>C</p>
 				</div>
 			</div>
 	
-			<div id="detail1">
-				<div class="detail1-time">
-					<br>
-					<p class="detail1Time">14:00</p>
-					<br><br>
-					<p class="detail1Time">15:00</p>
-					<br><br>
-					<p class="detail1Time">16:00</p>
-					<br><br>
-					<p class="detail1Time">17:00</p>
+			<div id="detail1" class="w-100">
+				<div class="header w-36 border border-gray-600">
+					<div class="cardInfo">
+						<span class="items-center justify-self-center"> NEW </span>
+					</div>
 				</div>
-				<div class="detail1-img">
-					<br>
-					<img class="detail1WeatherImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					<br>
-					<img class="detail1WeatherImg" src="{% static 'weather/css/sun:cloud.png' %}" style="width: 80px;">
-					<br>
-					<img class="detail1WeatherImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					<br>
-					<img class="detail1WeatherImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+
+				<div class="outerCard">
+					<div class="cardInfo">
+						<h3>Berkeley, CA</h3>
+						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					</div>
+					<span>bedroom</span>
 				</div>
-				<div class="detail1-temp">
-					<br>
-					<p class="detail1Temp">27 <span>&#176;</span>C!!</p>
-					<br><br>
-					<p class="detail1Temp">26 <span>&#176;</span>C!!</p>
-					<br><br>
-					<p class="detail1Temp">25 <span>&#176;</span>C!!</p>
-					<br><br>
-					<p class="detail1Temp">24 <span>&#176;</span>C!!</p>
+
+				<div class="outerCard">
+					<div class="cardInfo">
+						<h3>Berkeley, CA</h3>
+						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					</div>
+					<span>bedroom</span>
+				</div>
+
+				<div class="outerCard">
+					<div class="cardInfo">
+						<h3>Berkeley, CA</h3>
+						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					</div>
+					<span>bedroom</span>
+				</div>
+
+				<div class="outerCard">
+					<div class="cardInfo">
+						<h3>Berkeley, CA</h3>
+						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					</div>
+					<span>bedroom</span>
+				</div>
+
+				<div class="outerCard">
+					<div class="cardInfo">
+						<h3>Berkeley, CA</h3>
+						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					</div>
+					<span>bedroom</span>
+				</div>
+
+				<div class="outerCard">
+					<div class="cardInfo">
+						<h3>Berkeley, CA</h3>
+						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
+					</div>
+					<span>bedroom</span>
 				</div>
 			</div>
 	
 			<div id="detail2">
 				<div class="detail2Info">
-					<ul>
-						<li>Air Quality: good</li>
-						<li>Wind: breeze</li>
-						<li>humdity: 60%</li>
-					</ul>
-					<p class="detail2Notice"> <span style="font-size:100%;color:orangered;">&starf;</span> May rain in the evening</p>
 				</div>
 			</div>
 	
