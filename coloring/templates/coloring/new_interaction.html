@@ -1,540 +1,1 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  	<title>P3 Coloring</title>
-
-	<script type="text/javascript" src="{% static 'coloring/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script>
-	<link href="{% static 'coloring/vendors/tailwind/tailwind.min.css' %}" rel="stylesheet">
-	{% comment %} <script src="{% static 'coloring/vendors/bootstrap/js/bootstrap.min.js' %}"></script> {% endcomment %}
-	{% comment %} <link href="{% static 'coloring/vendors/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> {% endcomment %}
-
-	<!-- <style type="text/css" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script> -->
-	<style type="text/css"> 
-
-p.cityLocalTime {
-    color: royalblue;
-    font-family: "Work Sans";
-    font-size: x-large;
-}
-h1 {
-    color: black;
-    font-family: "Work Sans";
-    margin-top: 3px;
-    /* color:royalblue */
-    color: blue;
-}
-
-/* body {
-    background-color: powderblue;
-} */
-
-#outer-wrapper {
-    /* width: 414px; */
-    color: black;
-    background-color: #c9ffe5;
-    margin-left: 80px;
-    margin-right: auto;
-    border-top: 2px solid #aaa;
-    border-bottom: 2px solid #aaa;
-
-    height: auto;
-}
-
-.border {
-	margin-top: 20px;
-    background-color: #fddde6;
-	width: 400px;
-}
-
-.outerCard {
-    margin-top: 50px;
-    background-color: #fddde6;
-    height: 150px;
-    width: 165px;
-
-    float: left;
-
-    border: 2px solid black;
-    /* border-radius:15px; */
-    margin-top: 50px;
-    margin-bottom: 20px;
-    margin-left:18px;
-    margin-right: 18px;
-}
-
-
-
-#city {
-    width: 414px;
-    height: 150px;
-    border-bottom: 2px solid #aaa;
-    margin-top: 8px;
-
-    background-image: url("{% static 'weather/css/warning.png' %}")
-}
-
-#cityInfo {
-    margin-left: 42px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-#overview {
-    width: 414px;
-    height: 100px;
-    border-bottom: 2px solid #aaa;
-    background-color: #fddde6;
-}
-
-#overviewAlert {
-    width: 414px;
-    height: 200px;
-    border-bottom: 2px solid #aaa;
-    /* background-color: red; */
-    background-color: #fddde6;
-}
-
-#detail1 {
-    width: 414px;
-    height: 360px;
-    background-color: #d8ecf3;
-    border-bottom: 2px dotted #aaa;
-}
-
-#detail2 {
-    width: 414px;
-    height: 130px;
-    border-top: 2px dotted #aaa;
-    border-bottom: 2px solid #aaa;
-    background-color: #fddde6;
-}
-
-
-.buttonAdd {
-    border-radius: 30%;
-    float: right;
-    background-color: skyblue;
-}
-
-.buttonBack {
-    border-radius: 30%;
-    float: left;
-    background-color: skyblue;
-}
-
-.cityWarning {
-    float: right;
-    padding-right: 20px;
-    padding-top: 30px;
-}
-
-.cityLocalTime {
-    margin-left: 10px;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-.overviewImg {
-    /* width: 30px;
-    height: auto; */
-    margin-top: 20px;
-    margin-left: 15px;
-    padding-left: 10px;
-    padding-top: 8px;
-}
-
-.feature-overview-temp {
-    float: right;
-    margin-right: 15px;
-}
-
-.overview-temp {
-    /* font-weight: 1200; */
-    font-family: "Work Sans Black 900 italic";
-    font-size: 60px;
-    color:blue;
-    margin-top: 20px;
-    padding-left: 50px;
-    padding-right: 20px;
-    /* font-size: xx-large; */
-}
-
-.forecastHigh {
-    float: left;
-    /* color: blue; */
-    color:royalblue;
-    margin-top: 0;
-    padding-left: 30px;
-}
-.forecastLow {
-    float: left;
-    padding-left: 15px;
-    /* color: blue; */
-    color:royalblue;
-    margin-top: 0;
-    padding-left: 20px;
-    padding-right: 10px;
-}
-
-.detail1-time {
-    float: left;
-    padding-left: 20px;
-}
-
-.detail1Time {
-    color: green;
-    margin-left: 8px;
-    /* margin-top: 10px; */
-}
-
-.detail1-img {
-    float: left;
-    /* margin-top: 20px; */
-    padding-left: 40px;
-    /* padding-left: 120px; */
-}
-
-.detail1-temp {
-    float: left;
-    padding-left: 85px;
-}
-
-.detail1WeatherImg {
-    padding-bottom: 10px;
-}
-
-
-.detail1Temp {
-    color: green;
-    margin-right: 10px;
-}
-
-.detail2Info {
-    /* margin-top: 8px; */
-    margin-left: 15px;
-    font-family: "Work Sans";
-}
-
-
-.detail2Notice {
-    padding-left: 20px;
-    padding-bottom: 30px;
-    margin-bottom: 50px;
-    color: green
-}
-
-
-	.button {
-    	float: right;
-    	background-color: #fddde6;
-    	color: royalblue
-	}
-
-
-
-		#color-palette {
-			width: 300px;
-			background-color: #f1f1f1;
-			display: flex;
-			flex-wrap: wrap;
-			position: absolute;
-			top: 0;
-		}
-
-		.swatch {
-			width: 24px;
-			height: 24px;
-			-moz-border-radius: 12px;
-			-webkit-border-radius: 12px;
-			border-radius: 12px;
-			margin: 3px;
-		}
-/* 
-		#myCanvas {
-			padding-left: 0;
-		    padding-right: 0;
-		    margin-left: auto;
-		    margin-right: auto;
-		    display: block;
-		} */
-	</style>
-
-	<script type="text/javascript" canvas="canvas">
-																													var mode = 'tool-fill';
-		window.onload = function() {
-			var canvas = document.getElementById('myCanvas');
-			var layer0;
-			var layer1;
-			var myPath;
-			var brushSize = 16;
-			// coloring page
-			var mandala = {
-				item: null,
-				lastClicked: null,
-				filePath: '/static/coloring/images/{{ filename }}'
-			};
-
-			// color palette
-			var cp = {
-				history: ["#000000"], // black selected by default
-				options: [],
-				$container: $('#colors-container')
-			}
-
-			function myCustomInteraction() {
-				var tool = new paper.Tool();
-
-				tool.onMouseDown = function (event) {
-					if (mode == 'tool-brush') {
-						myPath = new paper.Path();
-						myPath.strokeColor = cp.history[cp.history.length - 1];
-						myPath.strokeWidth = brushSize;
-						myPath.strokeCap = "round";
-						myPath.strokeJoin = "round";
-						layer0.addChild(myPath)
-					} else if (mode == 'tool-eraser') {
-						// hit test on the fills
-						var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
-						if (hit) {
-							hit.item.fillColor = new paper.Color(1, 1, 1, 0.01);
-						}
-						// hit test on the brush strokes
-						hit = layer0.hitTest(event.point);
-						if (hit) {
-							hit.item.remove();
-						}
-
-					} else {
-						var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
-						if (hit) {
-							// Color pallette keeps track of the full history of colors, though we
-							// only color in with the most-recent color.
-							hit.item.fillColor = cp.history[cp.history.length - 1];
-						}
-					}
-				}
-
-				tool.onMouseDrag = function (event) {
-					if (mode == 'tool-brush') {
-						myPath.add(event.point);
-					}
-				}
-			}
-
-			// create a color palette with the given colors
-			function createColorPalette(colors){
-
-				// create a swatch for each color
-				for (var i = colors.length - 1; i >= 0; i--) {
-					var $swatch = $("<div>").css("background-color", colors[i])
-									   	.addClass("color-swatch w-6 h-6 rounded-2xl border border-gray-600 shadow-md")
-										.attr('id', `color-swatch-${i}`);
-					$swatch.click(function(){
-						// add color to the color palette history
-					  	cp.history.push($(this).css("background-color"));
-						// switch to fill tool
-						$('.color-swatch-active').removeClass('color-swatch-active ring-4 ring-blue-600')
-												.addClass('border border-gray-600');
-						$(this).removeClass('border border-gray-600')
-								.addClass('color-swatch-active ring-4 ring-blue-600');
-						
-					});
-					cp.$container.append($swatch);
-				}
-			}
-
-			// function getColorsCreatePalette(){
-			// 	cp.$container.html(" ");
-			// 	$.getJSON('/static/coloring/vendors/material/material-colors.json', function(colors){
-			// 		var keys = Object.keys(colors);
-			// 		for (var i = keys.length - 1; i >= 0; i--) {
-			// 			cp.options.push(colors[keys[i]][500]);
-			// 		}
-			// 		cp.options.push('#000000')
-			// 		cp.options.push('#ffffff')
-			// 		console.log('cp.options is', cp.options)
-			// 		createColorPalette(cp.options);
-			// 	});
-			// }
-
-			// function setUpTools() {
-			// 	$('#tool-fill').removeClass('border-2 border-gray-400')
-			// 				.addClass('tool-active ring-4 ring-blue-600');
-			// 	$('#tool-size').toggle();
-			// 	$('.tool').click(function() {
-			// 		$('.tool-active').removeClass('tool-active ring-4 ring-blue-600')
-			// 						.addClass('border-2 border-gray-400');
-			// 		$(this).removeClass('border-2 border-gray-400')
-			// 				.addClass('tool-active ring-4 ring-blue-600');
-			// 		mode = $(this).attr('id');
-			// 		$('#tool-size').toggle(mode == 'tool-brush');
-			// 		$('#colors').toggle(mode != 'tool-eraser');
-			// 	})
-			// }
-
-			function init(custom){
-				$('#next-button').click(function() {
-					window.location.href = `/coloring/choose_template`;
-				})
-				paper.setup(canvas);
-				getColorsCreatePalette();
-				setUpTools();
-
-				paper.project.importSVG(mandala.filePath, function(item) {
-					if (item._children["design-freepik"]) {
-						mandala.item = item._children["design-freepik"];
-					} else {
-						console.log(item.children)
-						mandala.item = item.children[0]
-					}
-					// console.log(item.children)
-					// mandala.item = item.children[0]
-					layer0 = new paper.Layer({
-						children: [],
-						strokeColor: 'black',
-					});
-					paper.project.insertLayer(0, layer0);
-					layer1 = new paper.Layer({
-						children: [mandala.item]
-					})
-					paper.project.insertLayer(1, layer1);
-					layer1.activate()
-
-					mandala.item.fillColor = new paper.Color(1, 1, 1, 0.01);
-
-				    if (custom) {
-				    	myCustomInteraction();
-				    } else {
-				    	myGradientInteraction();
-				    }
-
-				});
-			}
-
-			// Set up the mandala interactivity.
-			init(true);
-			
-			// Setup navbar
-			$(document).ready(function() {
-				const rainbowColors = ["#fc4444", "#ffa500", "#fbdb04", "#8bc34a", "#03a9f4", "#043c8c", "#673ab7", "#9c27b0", "#ec4c8c", "#fc8c84"];
-				const navTitle = "Color Your Dreams";
-				const splitNavTitle = navTitle.split('');
-				for (var i = 0; i < splitNavTitle.length; i++) {
-					var s = $(`<span>${splitNavTitle[i]}</span>`)
-							.css("color", rainbowColors[i % rainbowColors.length]);
-					$('#a-navbar-title').append(s);
-				}
-				$('#color-swatch-19').removeClass('border border-gray-600')
-								.addClass('color-swatch-active ring-4 ring-blue-600');
-			})
-		}
-	</script>
-</head>
-<body>
-	<div id="background" class="w-full h-full min-w-screen min-h-screen overflow-auto">
-		<div class="h-30 w-full flex justify-between items-center bg-white shadow-xl">
-			<div class="w-10">
-				<div id="next-button" class="h-8 w-36 px-2 border border-gray-300 rounded shadow">
-					<span>back</span>
-				</div>
-			</div>
-			<div class="justify-self-center font-medium text-lg border border-gray-300"><span>step1: Set Up Your Room</span></div>
-			<div class="justify-self-center font-medium text-lg border border-gray-300"><span>step2: Set Up Your Objects</span></div>
-			<div class="justify-self-center font-medium text-lg border border-gray-300"><span>step3: View Your Design</span></div>
-			<div class="w-10">
-				<div id="next-button" class="h-8 w-36 px-2 border border-gray-300 rounded shadow">
-					<span>-></span>
-				</div>
-			</div>
-		</div>
-
-		<div id="outer-wrapper">
-
-			<div id="city">
-				<div id="cityInfo">
-					<br><br>
-					<span class="justify-self-center text-5xl"> Room </span>
-					<span class="justify-self-center text-5xl"> Planner </span>
-				</div>
-			</div>
-	
-			<div id="overview">
-				<img class="overviewImg" src="{% static 'weather/css/sun.png' %}" style="width: 160px;">
-				<div class="feature-overview-temp">
-					<br>
-				</div>
-			</div>
-	
-			<div id="detail1" class="w-100">
-				<div class="header w-36 border border-gray-600">
-					<div class="cardInfo">
-						<span class="items-center justify-self-center"> NEW </span>
-					</div>
-				</div>
-
-				<div class="outerCard">
-					<div class="cardInfo">
-						<h3>Berkeley, CA</h3>
-						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					</div>
-					<span>bedroom</span>
-				</div>
-
-				<div class="outerCard">
-					<div class="cardInfo">
-						<h3>Berkeley, CA</h3>
-						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					</div>
-					<span>bedroom</span>
-				</div>
-
-				<div class="outerCard">
-					<div class="cardInfo">
-						<h3>Berkeley, CA</h3>
-						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					</div>
-					<span>bedroom</span>
-				</div>
-
-				<div class="outerCard">
-					<div class="cardInfo">
-						<h3>Berkeley, CA</h3>
-						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					</div>
-					<span>bedroom</span>
-				</div>
-
-				<div class="outerCard">
-					<div class="cardInfo">
-						<h3>Berkeley, CA</h3>
-						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					</div>
-					<span>bedroom</span>
-				</div>
-
-				<div class="outerCard">
-					<div class="cardInfo">
-						<h3>Berkeley, CA</h3>
-						<img class="cardImg" src="{% static 'weather/css/sun.png' %}" style="width: 80px;">
-					</div>
-					<span>bedroom</span>
-				</div>
-			</div>
-	
-			<div id="detail2">
-				<div class="detail2Info">
-				</div>
-			</div>
-	
-		</div>
-	
-
-	</div>
-
-	
-</body>
-</html>
+{% load static %}<!DOCTYPE html><html><head>    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    <title>Final Project</title>    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"            crossorigin="anonymous"></script>    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">    <style type="text/css">        #screen {            height: 800px;            width: 600px;            border: black;            border-style: solid;            margin-right: auto;            margin-left: auto;        }        #nav-bar {            height: 80px;            width: 100%;            margin: 0 auto;            display: flex;            justify-content: space-around;        }        .button {            font-size: 1.8rem;        }        #step-progress-bar {            height: 100%;            width: 500px;            display: flex;            justify-content: center;        }        .single-step {            height: 100%;            width: 125px;            border-style: solid;            border-width: 1px;        }        .step-text-number {            font-size: 24px;            font-family: cursive;            text-align: center;            padding: 4px;            margin: 0;        }        .step-text-description {            font-size: 12px;            font-family: cursive;            text-align: center;            padding: 4px;            margin: 0;        }        #app-topic-display {            width: 80%;            height: 150px;            margin: 0 auto;            text-align: center;        }        #app-name {            padding-top: 12px;            font-size: 80px;            font-family: cursive;        }        #app-description {            margin: -36px;            font-size: 16px;            font-family: cursive;        }        #room-type-container {            width: 90%;            height: 540px;            border-style: solid;            margin: 0 auto;            padding: 4px;            display: flex;            flex-direction: column;            justify-content: space-around;        }        #new-room-button {            width: 90%;            height: 50px;            border-style: solid;            border-width: 1px;            margin: 0 auto;            padding: 4px;            text-align: center;            font-size: 24px;        }        #default-room-type-container {            width: 95%;            height: 400px;            margin: 0 auto;            padding: 4px;            text-align: center;            font-size: 24px;            display: flex;            flex-wrap: wrap;            justify-content: space-evenly;        }        .default-room-type {            width: 30%;            height: 45%;            border-style: solid;            border-width: 1px;        }    </style>    <script type="text/javascript">        function myCustomInteraction() {            // tbc        }        function init(custom) {            // tbc        }    </script></head><body><div id="screen">    <div id="nav-bar">        <div class="button">            <i class="bi bi-list"></i>        </div>        <div id="step-progress-bar">            <div class="single-step">                <p class="step-text-number">Step 1:</p>                <p class="step-text-description">Set Up Your Room</p>            </div>            <div class="single-step">                <p class="step-text-number">Step 2:</p>                <p class="step-text-description">Set Up Your Objects</p>            </div>            <div class="single-step">                <p class="step-text-number">Step 3:</p>                <p class="step-text-description">View Your Design</p>            </div>            <div class="single-step">                <p class="step-text-number">Step 4:</p>                <p class="step-text-description">Save & Share</p>            </div>        </div>        <div class="button">            <i class="bi bi-save"></i>        </div>    </div>    <div id="app-topic-display">        <p id="app-name">PlanOut</p>        <p id="app-description">An interactive tool for design optimization of architectural layouts</p>    </div>    <div id="room-type-container">        <div id="new-room-button">            NEW        </div>        <div id="default-room-type-container">            <div class="default-room-type">                bedroom            </div>            <div class="default-room-type">                kitchen            </div>            <div class="default-room-type">                living room            </div>            <div class="default-room-type">                bathroom            </div>            <div class="default-room-type">                balcony            </div>            <div class="default-room-type">                bedroom2            </div>        </div>    </div></div></body></html>
