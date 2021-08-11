@@ -126,9 +126,12 @@
             background-color: darkgrey;
         }
 
-        .view {
-            position:absolute;
-            right: 240px;
+        .description {
+            flex-shrink: 0;
+            height: 150px;
+            width: 245px;
+            margin: 10px;
+            background-color: darkgrey;
         }
 
     </style>
@@ -193,47 +196,16 @@
     </div>
 
     <div id="objects-container">
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-                    DOOR
-                </button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
-                    WINDOW
-                </button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
-                        type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
-                    BAY WINDOW
-                </button>
-                
-                <a href="http://localhost:8000/planout/viewdesign">
-                <div class="nav-link view" type="button" role="tab">
-                    VIEW
-                </div>
-                </a>
-            </div>
-        </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="objects">
-                    <div class="single-object">
-                        DOROOOJEOD
+                    <div class="description">
+                        <h5> You Have Placed: </h5>
                     </div>
-                    <div class="single-object">
-                        DOORDDDDD
-                    </div>
-                    <div class="single-object">
-                        DOORDDDDD
+                    <div class="description">
+                        <h5> Your Room Has: </h5>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                WINDOW
-            </div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                BAY WINDOW
             </div>
         </div>
     </div>
