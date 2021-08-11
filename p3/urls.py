@@ -3,5 +3,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('coloring/', include('coloring.urls')),
+    path('planout/', include('coloring.urls')),
 ]
