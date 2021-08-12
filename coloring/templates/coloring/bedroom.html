@@ -90,6 +90,13 @@
             border-width: 1px;
             margin-top: 8px;
             overflow: visible;
+            position: relative;
+        }
+
+        #rotate-button {
+            position: absolute;
+            right: 4px;
+            bottom: 0px;
         }
 
         #objects-container {
@@ -127,11 +134,10 @@
             background-color: darkgrey;
         }
 
-        .view {
-            position:absolute;
-            right: 454px;
-            /* position: relative;
-            float: right; */
+        .single-object.selected {
+            border-style: solid;
+            border-width: 4px;
+            border-color: lightblue;
         }
 
     </style>
@@ -146,14 +152,31 @@
             $("#room-container").droppable(
                 {
                     drop: function (event, ui) {
-                        const el = ui.helper.clone();
                         if (ui.draggable.parent().hasClass('objects')) {
+                            const el = ui.helper.clone();
                             $(this).append(el);
+                            el.click(function () {
+                                $("#room-container > .single-object").removeClass("selected");
+                                $(this).addClass("selected");
+                            });
+                            el.draggable();
                         }
-                        el.draggable();
+                        $("#room-container > .single-object").removeClass("selected");
                     }
                 }
             );
+
+            $("#rotate-button").click(function () {
+                let currentTransformValue = $(".selected").attr("transform");
+                let targetTransformValue;
+                if (!currentTransformValue) {
+                    currentTransformValue = "0";
+                }
+                targetTransformValue = (parseInt(currentTransformValue) + 45) % 360;
+                $(".selected").attr("transform", targetTransformValue);
+                $(".selected").css("transform", "rotate("+targetTransformValue+"deg)");
+            });
+
         });
     </script>
 </head>
@@ -192,7 +215,9 @@
     </div>
 
     <div id="room-container">
-
+        <div id="rotate-button" class="button">
+            <i class="bi bi-arrow-repeat"></i>
+        </div>
     </div>
 
     <div id="objects-container">
@@ -210,12 +235,6 @@
                         type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                     BAY WINDOW
                 </button>
-                
-                <a href="http://localhost:8000/planout/viewdesign">
-                <div class="nav-link view" type="button" role="tab">
-                    VIEW
-                </div>
-                </a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
