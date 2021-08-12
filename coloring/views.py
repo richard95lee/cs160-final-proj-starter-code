@@ -5,6 +5,3 @@ def index(request):
 
 def bedroom(request):
     return render(request, 'coloring/bedroom.html')
-
-def viewdesign(request):
-    return render(request, 'coloring/viewdesign.html')
