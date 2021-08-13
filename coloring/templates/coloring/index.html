@@ -15,6 +15,16 @@
 
 
     <style type="text/css">
+        @font-face {
+            font-family: Bebas;
+            src: url(static/coloring/assets/Bebas.ttf);
+        }
+
+        @font-face {
+            font-family: Rubik_Light;
+            src: url(Rubik-Light.ttf);
+        }
+
         #screen {
             height: 800px;
             width: 600px;
@@ -119,7 +129,8 @@
             margin: 0 auto;
             padding: 4px;
             text-align: center;
-            font-size: 24px;
+            line-height: 180px;
+            font-size: 20px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
@@ -185,8 +196,10 @@
     </div>
 
     <div id="app-topic-display">
-        <p id="app-name">PlanOut</p>
-        <p id="app-description">An interactive tool for design optimization of architectural layouts</p>
+        <div id="app-name">
+            <img style="width: 200px; position: relative; top: -25px" src="../../static/coloring/images/planout_logo.png">
+        </div>
+        <p id="app-description">the interactive tool to optimize design layouts</p>
     </div>
 
     <div id="room-type-container">
@@ -196,32 +209,32 @@
         <div id="default-room-type-container">
             <a class="link" href="http://localhost:8000/planout/bedroom">
                 <div class="default-room-type">
-                    bedroom
+                    BEDROOM
                 </div>
             </a>
             <a class="link" href="http://localhost:8000/planout/bedroom">
                 <div class="default-room-type">
-                    kitchen
+                    KITCHEN
                 </div>
             </a>
             <a class="link" href="http://localhost:8000/planout/bedroom">
                 <div class="default-room-type">
-                    living room
+                    LIVING ROOM
                 </div>
             </a>
             <a class="link" href="http://localhost:8000/planout/bedroom">
                 <div class="default-room-type">
-                    bathroom
+                    BATHROOM
                 </div>
             </a>
             <a class="link" href="http://localhost:8000/planout/bedroom">
                 <div class="default-room-type">
-                    balcony
+                    BALCONY
                 </div>
             </a>
             <a class="link" href="http://localhost:8000/planout/bedroom">
                 <div class="default-room-type">
-                    bedroom2
+                    BEDROOM
                 </div>
             </a>
         </div>
