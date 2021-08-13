@@ -153,13 +153,24 @@
             border-color: darkgrey;
         }
 
+        #share-icons-container {
+            width: 500px;
+        }
+
+        #icons {
+            margin: 0 auto;
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+        }
+
     </style>
 
     <script type="text/javascript">
         $(function () {
-            $("objects-container").show();
+            $("#objects-container").show();
             $("#view-container").hide();
-            $("#share-container").hide();
+            $("#icons").hide();
 
             $(".single-object").draggable({
                 helper: 'clone',
@@ -201,7 +212,7 @@
                     inStep++;
                     $("#objects-container").hide();
                     $("#view-container").show();
-                    $("#share-container").hide();
+                    $("#icons").hide();
                     $("#step2").removeClass("active-single-step");
                     $("#step3").addClass("active-single-step");
 
@@ -219,8 +230,8 @@
                 } else if (inStep === 3) { // 3 to 4
                     inStep++;
                     $("#objects-container").hide();
-                    $("#view-container").hide();
-                    $("#share-container").show();
+                    $("#view-container").show();
+                    $("#icons").show();
                     $("#step3").removeClass("active-single-step");
                     $("#step4").addClass("active-single-step");
                 } else {
@@ -234,14 +245,14 @@
                     inStep--;
                     $("#objects-container").show();
                     $("#view-container").hide();
-                    $("#share-container").hide();
+                    $("#icons").hide();
                     $("#step3").removeClass("active-single-step");
                     $("#step2").addClass("active-single-step");
                 } else if (inStep === 4) { // 4 to 3
                     inStep--;
                     $("#objects-container").hide();
                     $("#view-container").show();
-                    $("#share-container").hide();
+                    $("#icons").hide();
                     $("#step4").removeClass("active-single-step");
                     $("#step3").addClass("active-single-step");
                 } else {
@@ -279,7 +290,7 @@
             </div>
         </div>
         <div class="button">
-            <i class="bi bi-save"></i>
+            <i class="bi bi-x"></i>
         </div>
     </div>
 
@@ -365,7 +376,15 @@
         <div class="button">
             <i class="bi bi-arrow-left-circle"></i>
         </div>
-        <div style="width: 500px"></div><!--just take space-->
+        <div id="share-icons-container">
+            <div id="icons">
+                <i class="bi bi-facebook button"></i>
+                <i class="bi bi-instagram button"></i>
+                <i class="bi bi-telegram button"></i>
+                <i class="bi bi-twitter button"></i>
+                <i class="bi bi-save button"></i>
+            </div>
+        </div>
         <div class="button">
             <i class="bi bi-arrow-right-circle step2-next"></i>
         </div>
